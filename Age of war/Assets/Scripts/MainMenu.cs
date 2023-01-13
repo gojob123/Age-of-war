@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -17,6 +17,18 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         StagePane.SetActive(true);
+    }
+    public void EasyGame()
+    {
+        SceneManager.LoadScene("StageEasy");
+    }
+    public void NormalGame()
+    {
+        SceneManager.LoadScene("StageNormal");
+    }
+    public void HardGame()
+    {
+        SceneManager.LoadScene("StageHard");
     }
     public void StageExit()
     {
