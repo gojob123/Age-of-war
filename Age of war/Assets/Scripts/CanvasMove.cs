@@ -6,35 +6,27 @@ public class CanvasMove : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     private Vector3 moveDirection = Vector3.zero;
-    void Start()
+    private void Start()
     {
-        
     }
-    void Update()
+    private void Update()
     {
-        
+        UpdateMove();
     }
     public void UpdateMove()
     {
         float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
-        moveDirection = new Vector3(x, y, 0);
+        moveDirection = new Vector3(x, 0, 0);
         transform.position += moveDirection * moveSpeed * Time.deltaTime;
-        if (transform.position.x > 3950)
+        if (transform.position.x >= 1575)
         {
-            transform.Translate(new Vector3(-5, 0, 0));
+            //transform.Translate(new Vector3(-5, 0, 0));
+            transform.position = new Vector3(1575, 540, -1);
         }
-        else if (transform.position.x < -3950)
+        else if (transform.position.x <= 345)
         {
-            transform.Translate(new Vector3(5, 0, 0));
-        }
-        if (transform.position.y > 2930)
-        {
-            transform.Translate(new Vector3(0, -5, 0));
-        }
-        else if (transform.position.y < -2930)
-        {
-            transform.Translate(new Vector3(0, 5, 0));
+            //transform.Translate(new Vector3(5, 0, 0));
+            transform.position = new Vector3(345, 540, -1);
         }
     }
 }

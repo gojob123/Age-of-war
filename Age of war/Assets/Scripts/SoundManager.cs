@@ -6,13 +6,14 @@ using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
-    public Slider bgmVolume;
-    public Slider effectVolume;
+    private Slider bgmVolume;
+    //private Slider effectVolume;
+    private float effectVolume;
     public static SoundManager SoundEffect;
-    public AudioMixer audioMixer;
-    public AudioSource musicSource;
-    public AudioSource effectSource;
-    public AudioSource bossMusicSource;
+    private AudioMixer audioMixer;
+    private AudioSource musicSource;
+    private AudioSource effectSource;
+    private AudioSource bossMusicSource;
     //public AudioSource bgm;
     private void Awake()
     {
@@ -27,6 +28,7 @@ public class SoundManager : MonoBehaviour
     }
     private void Start()
     {
+        effectVolume = 1f;
     }
     private void Update()
     {
@@ -35,8 +37,9 @@ public class SoundManager : MonoBehaviour
     {
         GameObject soundStart = new GameObject(sound + "Sound");
         AudioSource audioSource = soundStart.AddComponent<AudioSource>();
-        audioSource.volume = effectVolume.value;
-        audioSource.outputAudioMixerGroup = audioMixer.FindMatchingGroups("EffectSound")[0];
+        //audioSource.volume = effectVolume.value;
+        audioSource.volume = effectVolume;
+        //audioSource.outputAudioMixerGroup = audioMixer.FindMatchingGroups("EffectSound")[0];
         audioSource.clip = clip;
         audioSource.Play();
         Destroy(soundStart, clip.length);
@@ -48,6 +51,6 @@ public class SoundManager : MonoBehaviour
     }
     public void SetEffectVolume()
     {
-        effectSource.volume = effectVolume.value;
+        effectSource.volume = effectVolume;
     }
 }
